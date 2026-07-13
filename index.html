@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3 Campañas · Compra-Venta Tradicional · Altaltium</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0b09;--bg2:#141310;--bg3:#1c1a16;--bg4:#242220;
+  --line:#2e2c28;--line2:#3a3834;
+  --text:#f0ebe0;--text2:#c8c3b8;--muted:#7a776e;
+  --red:#e8390e;--gold:#c9a84c;--teal:#3a9e72;--blue:#4a90d9;--purple:#8a5cf6;
+  --fh:'Syne',sans-serif;--fb:'DM Sans',sans-serif;
+  --r:8px;--r2:14px;--r3:20px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:14px;line-height:1.65}
+nav{position:sticky;top:0;z-index:100;background:rgba(12,11,9,.96);backdrop-filter:blur(16px);border-bottom:.5px solid var(--line)}
+.nav-in{max-width:1080px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+.logo{font-family:var(--fh);font-size:12.5px;font-weight:800}
+.logo span{color:var(--red)}
+.nlinks{display:flex;gap:4px}
+.nl{font-size:10.5px;font-weight:500;color:var(--muted);padding:5px 10px;border-radius:var(--r3);text-decoration:none;transition:all .15s}
+.nl:hover{color:var(--text);background:var(--bg3)}
+.hero{max-width:1080px;margin:0 auto;padding:4rem 1.5rem 3rem}
+.eye{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.eye::before{content:'';width:24px;height:1px;background:var(--red)}
+h1{font-family:var(--fh);font-size:clamp(32px,5.5vw,58px);font-weight:800;line-height:.98;letter-spacing:-.03em;margin-bottom:1.25rem}
+h1 .acc{color:var(--red)}
+.hero p{font-size:14px;color:var(--text2);font-weight:300;max-width:620px;line-height:1.75}
+.wrap{max-width:1080px;margin:0 auto;padding:3rem 1.5rem;border-top:.5px solid var(--line)}
+.sec-eye{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+.sec-eye::before{content:'';width:14px;height:1px;background:var(--muted)}
+.sec-t{font-family:var(--fh);font-size:clamp(21px,3vw,32px);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:.6rem}
+.sec-t .acc{color:var(--red)}
+.sec-i{font-size:13px;color:var(--text2);max-width:600px;margin-bottom:2rem;font-weight:300;line-height:1.7}
+/* research grid */
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:.5px solid var(--line);border-radius:var(--r2);overflow:hidden;margin-bottom:1.5rem}
+.rc{background:var(--bg2);padding:1.2rem 1.35rem}
+.rp{font-family:var(--fh);font-size:13px;font-weight:800;margin-bottom:.6rem}
+.rl{font-size:11.5px;color:var(--text2);line-height:1.6;padding:3px 0;border-bottom:.5px solid var(--line)}
+.rl:last-child{border:none}
+.rl strong{color:var(--text);font-weight:500}
+/* insight bar */
+.ib2{background:var(--bg2);border:.5px solid var(--line);border-left:2px solid var(--gold);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:.6rem;font-size:13px;color:var(--text2);line-height:1.65}
+.ib2 strong{color:var(--text);font-weight:500}
+.ib2 .tag{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);display:block;margin-bottom:3px}
+/* campaign tabs */
+.ctabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap}
+.ctab{font-family:var(--fh);font-size:12px;font-weight:700;padding:10px 18px;border-radius:var(--r2);border:.5px solid var(--line2);background:var(--bg2);color:var(--muted);cursor:pointer;transition:all .15s;line-height:1.3;text-align:left}
+.ctab small{display:block;font-family:var(--fb);font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.ctab:hover{background:var(--bg3);color:var(--text)}
+.ctab.on{background:var(--red);border-color:var(--red);color:#fff}
+.camp{display:none;animation:fi .25s ease}
+.camp.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* campaign layout */
+.chead{background:var(--bg2);border:.5px solid var(--line);border-radius:var(--r2);padding:1.75rem 2rem;margin-bottom:1rem}
+.cnum{font-family:var(--fh);font-size:11px;font-weight:700;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.cname{font-family:var(--fh);font-size:clamp(20px,3vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin-bottom:.6rem}
+.cdesc{font-size:13.5px;color:var(--text2);line-height:1.7;font-weight:300;max-width:680px}
+.cmeta{display:flex;gap:1.5rem;margin-top:1.25rem;padding-top:1rem;border-top:.5px solid var(--line);flex-wrap:wrap}
+.cm{font-size:11px}
+.cmk{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:9.5px;display:block;margin-bottom:2px}
+.cmv{color:var(--text);font-weight:500}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.panel{background:var(--bg2);border:.5px solid var(--line);border-radius:var(--r2);overflow:hidden}
+.ph{padding:.85rem 1.25rem;border-bottom:.5px solid var(--line);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pb{padding:1.1rem 1.25rem}
+.step2{display:flex;gap:.9rem;padding:.6rem 0;border-bottom:.5px solid var(--line);align-items:flex-start}
+.step2:last-child{border:none}
+.sn2{font-family:var(--fh);font-size:15px;font-weight:800;color:var(--red);flex-shrink:0;width:22px;line-height:1.4}
+.st2{font-size:12.5px;color:var(--text2);line-height:1.6}
+.st2 strong{color:var(--text);font-weight:500}
+/* psych pills */
+.pp-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.ppill{background:var(--bg3);border:.5px solid var(--line2);font-size:11px;font-weight:500;color:var(--text2);padding:5px 12px;border-radius:var(--r3);cursor:pointer;transition:all .15s}
+.ppill:hover{border-color:var(--gold);color:var(--gold)}
+.ppill.sel{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.pp-det{background:var(--bg3);border:.5px solid var(--line2);border-radius:var(--r);padding:.9rem 1.1rem;font-size:12.5px;color:var(--text2);line-height:1.65;display:none;animation:fi .2s ease}
+.pp-det.on{display:block}
+.pp-det strong{color:var(--gold);font-weight:500}
+/* hooks */
+.hook{background:var(--bg);border-left:2px solid var(--red);border-radius:0 var(--r) var(--r) 0;padding:.7rem 1rem;margin-bottom:.5rem;font-size:12.5px;color:var(--text);font-style:italic;line-height:1.6}
+.hook:last-child{margin-bottom:0}
+.hook span{font-style:normal;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red);display:block;margin-bottom:2px}
+/* funnel */
+.fun{display:flex;align-items:stretch;gap:0;margin-bottom:1rem;flex-wrap:wrap}
+.fs{flex:1;min-width:150px;background:var(--bg2);border:.5px solid var(--line);padding:1rem 1.1rem;position:relative}
+.fs:first-child{border-radius:var(--r2) 0 0 var(--r2)}
+.fs:last-child{border-radius:0 var(--r2) var(--r2) 0}
+.fs+.fs{border-left:none}
+.fsn{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px}
+.fst{font-size:12px;font-weight:500;color:var(--text);margin-bottom:3px}
+.fsd{font-size:11px;color:var(--muted);line-height:1.5}
+/* matrix table */
+.mt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:1rem}
+.mt th{text-align:left;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.6rem .9rem;border-bottom:.5px solid var(--line2);background:var(--bg2)}
+.mt td{padding:.75rem .9rem;border-bottom:.5px solid var(--line);vertical-align:top;line-height:1.55;color:var(--text2)}
+.mt tr:hover td{background:var(--bg2)}
+.mt .bn{font-weight:500;color:var(--text)}
+footer{border-top:.5px solid var(--line);padding:2rem 1.5rem;text-align:center;font-size:11px;color:var(--muted)}
+footer span{color:var(--red)}
+@media(max-width:720px){.g2{grid-template-columns:1fr}.fun{flex-direction:column}.fs{border-radius:0!important}.fs:first-child{border-radius:var(--r2) var(--r2) 0 0!important}.fs:last-child{border-radius:0 0 var(--r2) var(--r2)!important}.fs+.fs{border-left:.5px solid var(--line);border-top:none}.nlinks{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="nav-in">
+  <div class="logo">Campañas <span>Compra-Venta</span></div>
+  <div class="nlinks">
+    <a class="nl" href="#investigacion">Investigación</a>
+    <a class="nl" href="#campanas">Campañas</a>
+    <a class="nl" href="#matriz">Matriz</a>
+  </div>
+</div></nav>
+
+<div class="hero">
+  <div class="eye">Altaltium · Compra-Venta Tradicional · 2026</div>
+  <h1>3 Campañas de<br><span class="acc">Venta de Propiedades</span></h1>
+  <p>Basadas en el sistema de fondo y forma de la viralidad. Cada campaña aplica puntos de presión psicológica, ingeniería social y neurociencia — calibradas para las restricciones del equipo: contenido sin rostro para la mayoría, e integración orgánica para la vendedora con canal de numerología.</p>
+</div>
+
+<div class="wrap" id="investigacion">
+  <div class="sec-eye">01 · Investigación de mercado — Mayo 2026</div>
+  <div class="sec-t">Qué Funciona Hoy en<br><span class="acc">Compra-Venta Tradicional</span></div>
+  <div class="sec-i">Hallazgos clave por plataforma, verificados en fuentes de la industria (Placester, Reel-E, Inman, Meta Business, LeadsBridge).</div>
+
+  <div class="rg">
+    <div class="rc">
+      <div class="rp" style="color:var(--red)">TikTok</div>
+      <div class="rl"><strong>Completion 70%</strong> es el nuevo umbral (antes 50%)</div>
+      <div class="rl"><strong>"Adivina el precio"</strong> = formato #1 en engagement</div>
+      <div class="rl">Tours: 60–90s · Reveal de cuarto: <strong>&lt;18 seg</strong></div>
+      <div class="rl">TikTok es <strong>buscador</strong>: SEO en caption, texto y voz</div>
+      <div class="rl">Música instrumental en tours; trending en educativo</div>
+    </div>
+    <div class="rc">
+      <div class="rp" style="color:var(--purple)">Instagram</div>
+      <div class="rl"><strong>60–70% de los leads</strong> de influencer RE vienen de IG</div>
+      <div class="rl">Reels 15–90s para descubrimiento</div>
+      <div class="rl">Carruseles: mayor tasa de <strong>saves</strong></div>
+      <div class="rl">Stories: previews de propiedades + polls para segmentar</div>
+    </div>
+    <div class="rc">
+      <div class="rp" style="color:var(--blue)">Facebook / Meta</div>
+      <div class="rl"><strong>Special Ad Category:</strong> sin targeting demográfico, radio mín. 15 mi</div>
+      <div class="rl"><strong>El creativo ES el targeting</strong> — el mensaje autoselecciona</div>
+      <div class="rl">Contacto en <strong>&lt;5 min</strong> convierte dramáticamente más</div>
+      <div class="rl">Conversión promedio: <strong>9.21%</strong> — la más alta social</div>
+      <div class="rl"><strong>85% ve videos en silencio</strong> → texto en pantalla obligatorio</div>
+    </div>
+    <div class="rc">
+      <div class="rp" style="color:#ff4444">YouTube + Shorts</div>
+      <div class="rl">Shorts: <strong>74% de vistas de no-suscriptores</strong></div>
+      <div class="rl">Walkthroughs 3–5 min para compradores de reubicación</div>
+      <div class="rl">Canal con Shorts + largo crece <strong>41% más rápido</strong></div>
+      <div class="rl">SEO permanente: leads orgánicos indefinidos</div>
+    </div>
+  </div>
+
+  <div class="ib2"><span class="tag">Insight decisivo · Contenido sin rostro</span>
+  El formato faceless #1 en real estate es <strong>tour con voz en off + texto en pantalla</strong>. Una sola casa genera 5+ videos: tour completo, un video por espacio, closeups de detalles, reveal del espacio estrella, y before/after. Los videos crudos y auténticos superan a los sobreproducidos.</div>
+
+  <div class="ib2"><span class="tag">Insight decisivo · Autenticidad gana</span>
+  Los videos virales de realtors en 2026 son <strong>momentos simples, crudos e imperfectos</strong>. "Consistencia sobre perfección". Publicar listados con precio encima es la forma más rápida de ser ignorado — la gente usa estas plataformas para entretenerse y aprender, no para ver el MLS.</div>
+</div>
+<div class="wrap" id="campanas">
+  <div class="sec-eye">02 · Las tres campañas</div>
+  <div class="sec-t">Selecciona una<br><span class="acc">Campaña</span></div>
+  <div class="sec-i">Cada una usa un mecanismo psicológico dominante distinto y un formato diferente. Juntas cubren descubrimiento, conversión y confianza. Haz clic en los mecanismos dorados para ver cómo operan.</div>
+
+  <div class="ctabs">
+    <button class="ctab on" onclick="verCamp(0,this)">Adivina el Precio<small>Sin rostro · Motor de comentarios</small></button>
+    <button class="ctab" onclick="verCamp(1,this)">Las Casas que No Ves<small>Sin rostro · Funnel Meta</small></button>
+    <button class="ctab" onclick="verCamp(2,this)">La Energía de Tu Casa<small>Con rostro · Numerología orgánica</small></button>
+  </div>
+
+  <!-- ══ CAMPAÑA 1 ══ -->
+  <div class="camp on" id="c0">
+    <div class="chead">
+      <div class="cnum">Campaña 01 · Sin rostro</div>
+      <div class="cname">"Adivina el Precio"</div>
+      <div class="cdesc">El formato con más engagement en real estate 2026. Se muestran exterior + 3–4 mejores tomas de la propiedad con texto "Adivina el precio". El precio se revela al final. El espectador comenta su estimado ANTES de ver la respuesta — comentarios masivos + completion rate alto + compradores activos calibrando precios de tu mercado.</div>
+      <div class="cmeta">
+        <div class="cm"><span class="cmk">Plataformas</span><span class="cmv">TikTok · Reels · Shorts</span></div>
+        <div class="cm"><span class="cmk">Duración</span><span class="cmv">20–35 seg</span></div>
+        <div class="cm"><span class="cmk">Frecuencia</span><span class="cmv">2–3 por semana</span></div>
+        <div class="cm"><span class="cmk">Producción</span><span class="cmv">Celular + voz en off + texto</span></div>
+        <div class="cm"><span class="cmk">KPI</span><span class="cmv">Comentarios + DMs</span></div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div class="panel">
+        <div class="ph">Estructura del video</div>
+        <div class="pb">
+          <div class="step2"><div class="sn2">01</div><div class="st2"><strong>0–2 seg:</strong> Toma exterior + texto grande "¿Cuánto crees que cuesta esta casa en [ciudad]?" — pattern interrupt inmediato.</div></div>
+          <div class="step2"><div class="sn2">02</div><div class="st2"><strong>2–20 seg:</strong> 3–4 tomas de los mejores espacios. Texto en pantalla con datos: m², recámaras, la característica sorpresa. Música instrumental.</div></div>
+          <div class="step2"><div class="sn2">03</div><div class="st2"><strong>20–28 seg:</strong> "Comenta tu precio antes de ver la respuesta" — congela 2 segundos. El compromiso público activa consistencia.</div></div>
+          <div class="step2"><div class="sn2">04</div><div class="st2"><strong>Final:</strong> Revelar precio con anchor: "Tasada en $X. Precio de venta: $Y". CTA: "¿Le atinaste? Sígueme para la siguiente."</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph">Mecanismos psicológicos — haz clic</div>
+        <div class="pb">
+          <div class="pp-row" data-c="0">
+            <div class="ppill" onclick="verPsy(0,0,this)">Curiosity gap / Zeigarnik</div>
+            <div class="ppill" onclick="verPsy(0,1,this)">Anclaje cognitivo</div>
+            <div class="ppill" onclick="verPsy(0,2,this)">Compromiso público</div>
+            <div class="ppill" onclick="verPsy(0,3,this)">Dopamina de revelación</div>
+          </div>
+          <div class="pp-det" id="pd-0"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:1rem">
+      <div class="ph">Hooks listos para producción</div>
+      <div class="pb">
+        <div class="hook"><span>Hook A · Estándar</span>"¿Cuánto crees que cuesta esta casa de 3 recámaras en [colonia]? Comenta tu precio. La respuesta al final."</div>
+        <div class="hook"><span>Hook B · Contraste</span>"Esta casa y la de al lado son idénticas. Una cuesta $800K más. Adivina cuál — y por qué."</div>
+        <div class="hook"><span>Hook C · Reto de mercado</span>"El 92% falla al adivinar el precio de esta propiedad. ¿Tú puedes?"</div>
+      </div>
+    </div>
+
+    <div class="fun">
+      <div class="fs"><div class="fsn">Fase 1</div><div class="fst">Comentario</div><div class="fsd">El espectador comenta su precio — primer micro-compromiso</div></div>
+      <div class="fs"><div class="fsn">Fase 2</div><div class="fst">Respuesta con video</div><div class="fsd">A las mejores preguntas se responde con video nuevo (más contenido + más señal)</div></div>
+      <div class="fs"><div class="fsn">Fase 3</div><div class="fst">DM natural</div><div class="fsd">2–3 de cada 40–60 comentarios se convierten en conversación de compra</div></div>
+      <div class="fs"><div class="fsn">Fase 4</div><div class="fst">Visita agendada</div><div class="fsd">Responder DMs en &lt;5 min — la velocidad de respuesta define la conversión</div></div>
+    </div>
+  </div>
+
+  <!-- ══ CAMPAÑA 2 ══ -->
+  <div class="camp" id="c1">
+    <div class="chead">
+      <div class="cnum">Campaña 02 · Sin rostro · Orgánico + Pagado</div>
+      <div class="cname">"Las Casas que No Ves"</div>
+      <div class="cdesc">Framing de conocimiento prohibido aplicado a compra-venta: propiedades presentadas como acceso anticipado antes de saturar portales. Serie de reveals de &lt;18 segundos que alimentan un funnel de Meta Ads con retargeting. Como el creativo ES el targeting en 2026, el mensaje autoselecciona compradores serios.</div>
+      <div class="cmeta">
+        <div class="cm"><span class="cmk">Plataformas</span><span class="cmv">Reels · Facebook · TikTok</span></div>
+        <div class="cm"><span class="cmk">Duración</span><span class="cmv">12–18 seg orgánico · 30s ad</span></div>
+        <div class="cm"><span class="cmk">Frecuencia</span><span class="cmv">3 por semana + retargeting continuo</span></div>
+        <div class="cm"><span class="cmk">Producción</span><span class="cmv">Reveal 1 espacio + voz + subtítulos</span></div>
+        <div class="cm"><span class="cmk">KPI</span><span class="cmv">Leads calificados + costo por visita</span></div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div class="panel">
+        <div class="ph">Estructura del video (Reveal &lt;18 seg)</div>
+        <div class="pb">
+          <div class="step2"><div class="sn2">01</div><div class="st2"><strong>0–2 seg:</strong> Puerta cerrada o pasillo. Texto: "La cocina que vendió esta casa en 2 días." Anticipación pura.</div></div>
+          <div class="step2"><div class="sn2">02</div><div class="st2"><strong>2–12 seg:</strong> Reveal del espacio estrella. Un cuarto, un reveal. El golpe de dopamina genera rewatch — que cuenta como tiempo adicional.</div></div>
+          <div class="step2"><div class="sn2">03</div><div class="st2"><strong>12–18 seg:</strong> "Esta propiedad aún no está en portales. Comenta CASA y te mando los detalles." Escasez + reciprocidad + captura.</div></div>
+          <div class="step2"><div class="sn2">04</div><div class="st2"><strong>Meta Ads:</strong> Retargeting a quien vio &gt;50% del video con lead form de preguntas calificadoras. Leads de retargeting convierten mucho mejor.</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph">Mecanismos psicológicos — haz clic</div>
+        <div class="pb">
+          <div class="pp-row" data-c="1">
+            <div class="ppill" onclick="verPsy(1,0,this)">Conocimiento prohibido</div>
+            <div class="ppill" onclick="verPsy(1,1,this)">Escasez + FOMO</div>
+            <div class="ppill" onclick="verPsy(1,2,this)">Aversión a la pérdida</div>
+            <div class="ppill" onclick="verPsy(1,3,this)">Autoselección (creative targeting)</div>
+          </div>
+          <div class="pp-det" id="pd-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:1rem">
+      <div class="ph">Hooks listos para producción</div>
+      <div class="pb">
+        <div class="hook"><span>Hook A · Acceso anticipado</span>"Esta casa sale a portales el lunes. Tú la estás viendo hoy. Así se ve llegar primero."</div>
+        <div class="hook"><span>Hook B · Pérdida documentada</span>"La familia que dudó 48 horas perdió esta propiedad. Esto fue lo que no alcanzaron a ver."</div>
+        <div class="hook"><span>Hook C · Reveal</span>"El espacio que hizo que 3 compradores ofertaran el mismo día. Espera el final."</div>
+      </div>
+    </div>
+
+    <div class="fun">
+      <div class="fs"><div class="fsn">Fase 1</div><div class="fst">Reveal orgánico</div><div class="fsd">Serie de reveals — el algoritmo identifica a interesados en propiedades</div></div>
+      <div class="fs"><div class="fsn">Fase 2</div><div class="fst">Pixel + audiencia</div><div class="fsd">Quien ve &gt;50% entra a la audiencia de retargeting de Meta</div></div>
+      <div class="fs"><div class="fsn">Fase 3</div><div class="fst">Ad con lead form</div><div class="fsd">"Recibe las propiedades antes de portales" + 2 preguntas calificadoras</div></div>
+      <div class="fs"><div class="fsn">Fase 4</div><div class="fst">Contacto &lt;5 min</div><div class="fsd">Respuesta automática inmediata + llamada del vendedor el mismo día</div></div>
+    </div>
+  </div>
+
+  <!-- ══ CAMPAÑA 3 ══ -->
+  <div class="camp" id="c2">
+    <div class="chead">
+      <div class="cnum">Campaña 03 · Con rostro · Integración orgánica</div>
+      <div class="cname">"La Energía de Tu Casa"</div>
+      <div class="cdesc">Para la vendedora con canal de numerología en crecimiento. La clave: NO interrumpir su contenido con propaganda — extenderlo. La numerología de casas (número de dirección, energía de espacios) es un género establecido y nativo de su nicho. La propiedad se convierte en el ESCENARIO de su lectura numerológica, no en el producto. Su audiencia ya confía en su lente espiritual: ver una casa a través de ese lente es contenido, no anuncio.</div>
+      <div class="cmeta">
+        <div class="cm"><span class="cmk">Plataforma</span><span class="cmv">Su TikTok existente</span></div>
+        <div class="cm"><span class="cmk">Duración</span><span class="cmv">45–90 seg (su formato actual)</span></div>
+        <div class="cm"><span class="cmk">Frecuencia</span><span class="cmv">1 de cada 4–5 videos (ratio 80/20)</span></div>
+        <div class="cm"><span class="cmk">Producción</span><span class="cmv">Ella en la propiedad, su estilo habitual</span></div>
+        <div class="cm"><span class="cmk">KPI</span><span class="cmv">DMs + retención de audiencia propia</span></div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div class="panel">
+        <div class="ph">Los 4 formatos orgánicos</div>
+        <div class="pb">
+          <div class="step2"><div class="sn2">A</div><div class="st2"><strong>Numerología del número de casa:</strong> "Esta casa es número 8 — el número de la abundancia material. Miren lo que encontré adentro..." Recorre la casa leyendo su energía. La propiedad es el contenido.</div></div>
+          <div class="step2"><div class="sn2">B</div><div class="st2"><strong>"Qué número de casa te conviene":</strong> contenido educativo puro de su nicho ("si buscas estabilidad, busca casas 4 o 6") que siembra la idea de buscar casa sin vender nada.</div></div>
+          <div class="step2"><div class="sn2">C</div><div class="st2"><strong>Lectura de espacios:</strong> "La entrada de esta casa mira al este — en numerología del hogar esto significa..." Tour completo disfrazado de lectura energética.</div></div>
+          <div class="step2"><div class="sn2">D</div><div class="st2"><strong>Story-time de cliente:</strong> "Una seguidora me pidió revisar la numerología de la casa que quería comprar. Esto fue lo que descubrimos." Prueba social + servicio implícito.</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph">Mecanismos psicológicos — haz clic</div>
+        <div class="pb">
+          <div class="pp-row" data-c="2">
+            <div class="ppill" onclick="verPsy(2,0,this)">Confianza transferida (halo)</div>
+            <div class="ppill" onclick="verPsy(2,1,this)">Native advertising</div>
+            <div class="ppill" onclick="verPsy(2,2,this)">Identidad tribal</div>
+            <div class="ppill" onclick="verPsy(2,3,this)">Reciprocidad + autoridad</div>
+          </div>
+          <div class="pp-det" id="pd-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:1rem">
+      <div class="ph">Hooks en su voz — listos para producción</div>
+      <div class="pb">
+        <div class="hook"><span>Hook A · Número de casa</span>"Si tu casa es número 8, tienes el número de la abundancia. Hoy encontré una casa 8 y tienen que ver su energía."</div>
+        <div class="hook"><span>Hook B · Educativo sembrado</span>"Antes de comprar una casa, revisa esto: el número de la dirección define la energía que vas a habitar."</div>
+        <div class="hook"><span>Hook C · Story-time</span>"Me pidieron leer la numerología de una casa antes de comprarla. Lo que encontré me sorprendió hasta a mí."</div>
+      </div>
+    </div>
+
+    <div class="fun">
+      <div class="fs"><div class="fsn">Regla 1</div><div class="fst">Ratio 80/20</div><div class="fsd">Máximo 1 de cada 4–5 videos toca propiedades — proteger su canal es proteger el activo</div></div>
+      <div class="fs"><div class="fsn">Regla 2</div><div class="fst">Nunca precio en video</div><div class="fsd">El precio y los datos van en respuesta a DMs — el video es lectura, no listing</div></div>
+      <div class="fs"><div class="fsn">Regla 3</div><div class="fst">CTA suave</div><div class="fsd">"Si quieres saber más de esta casita, mándame DM" — invitación, no venta</div></div>
+      <div class="fs"><div class="fsn">Regla 4</div><div class="fst">Handoff al equipo</div><div class="fsd">Ella responde el DM inicial; el equipo de ventas toma la conversación después</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" id="matriz">
+  <div class="sec-eye">03 · Matriz comparativa</div>
+  <div class="sec-t">Las Tres Campañas<br><span class="acc">Lado a Lado</span></div>
+  <div class="sec-i">Cada campaña ocupa un rol distinto en el sistema. Juntas cubren el funnel completo: descubrimiento masivo → captura de leads → confianza de nicho.</div>
+  <table class="mt">
+    <thead><tr><th style="width:18%">Dimensión</th><th style="width:27%">Adivina el Precio</th><th style="width:27%">Las Casas que No Ves</th><th style="width:28%">La Energía de Tu Casa</th></tr></thead>
+    <tbody>
+      <tr><td class="bn">Rol en el funnel</td><td>Descubrimiento masivo + calibración de mercado</td><td>Captura de leads calificados</td><td>Confianza profunda de nicho</td></tr>
+      <tr><td class="bn">Mecanismo dominante</td><td>Curiosity gap + compromiso público</td><td>Escasez + aversión a la pérdida</td><td>Confianza transferida (efecto halo)</td></tr>
+      <tr><td class="bn">Señal algorítmica</td><td>Comentarios + completion</td><td>Rewatch + retargeting pixel</td><td>Retención de audiencia fiel</td></tr>
+      <tr><td class="bn">Rostro</td><td>No — voz en off + texto</td><td>No — reveal + subtítulos</td><td>Sí — ella, en su estilo</td></tr>
+      <tr><td class="bn">Inversión</td><td>$0 — orgánico puro</td><td>Orgánico + presupuesto retargeting Meta</td><td>$0 — canal existente</td></tr>
+      <tr><td class="bn">Conversión</td><td>Comentario → DM → visita</td><td>Video → lead form → llamada &lt;5 min</td><td>DM a ella → handoff a ventas</td></tr>
+      <tr><td class="bn">Riesgo principal</td><td>Precios irreales generan burla — usar precios verificables</td><td>Prometer exclusividad falsa destruye confianza — solo propiedades realmente pre-portal</td><td>Sobresaturar su canal — respetar el ratio 80/20 sin excepción</td></tr>
+      <tr><td class="bn">Primer resultado esperado</td><td>2–4 semanas (volumen de comentarios)</td><td>4–6 semanas (audiencia de pixel madura)</td><td>6–8 semanas (confianza no se apura)</td></tr>
+    </tbody>
+  </table>
+  <div class="ib2"><span class="tag">Regla de oro del sistema</span>
+  Las tres campañas comparten un principio de la investigación: <strong>85% de los videos se ven en silencio</strong> — todo mensaje crítico va en texto en pantalla. Y en las tres, la velocidad de respuesta al primer contacto (&lt;5 minutos) importa más que cualquier elemento creativo.</div>
+</div>
+
+<footer>Altaltium Real Estate Solutions · <span>3 Campañas Compra-Venta Tradicional</span> · Basado en El Fondo y la Forma de la Viralidad · Mayo 2026</footer>
+
+<script>
+var PSY=[
+  [
+    "<strong>Curiosity gap / Efecto Zeigarnik:</strong> el cerebro retiene con más fuerza la información incompleta. La pregunta sin responder ('¿cuánto cuesta?') crea tensión cognitiva que solo se resuelve viendo hasta el final — eso es completion rate del 70%+ garantizado por diseño.",
+    "<strong>Anclaje cognitivo:</strong> revelar primero el valor de tasación y después el precio de venta hace que el precio se evalúe contra ese anchor. '$3.2M de tasación → $2.7M de precio' se percibe como oportunidad aunque el espectador no conociera el mercado.",
+    "<strong>Compromiso público (Festinger):</strong> quien comenta su estimado hace un micro-compromiso público. La consistencia cognitiva lo obliga a volver a ver la respuesta, seguir la cuenta para la siguiente, y defender su estimado en respuestas — triple señal algorítmica.",
+    "<strong>Dopamina de revelación:</strong> la incertidumbre con resolución programada es el mismo circuito de recompensa variable del juego. Cada video es una micro-apuesta emocional gratuita — y el cerebro vuelve por más."
+  ],
+  [
+    "<strong>Conocimiento prohibido:</strong> 'propiedades antes de portales' activa el mismo framing que funcionó en foreclosures — información que parece reservada para iniciados. No es secreta, pero se siente exclusiva, y eso genera shares como moneda social.",
+    "<strong>Escasez + FOMO:</strong> el 60% de las compras impulsivas son detonadas por FOMO. La escasez aquí es real — las buenas propiedades sí se van en días — solo se hace visible. El countdown de 'sale a portales el lunes' es urgencia genuina, no manufacturada.",
+    "<strong>Aversión a la pérdida (Kahneman):</strong> perder duele 2x más que ganar. 'La familia que dudó 48 horas la perdió' activa más motivación que cualquier descripción de la propiedad. Documentar pérdidas reales de otros compradores es el contenido más persuasivo del nicho.",
+    "<strong>Autoselección (creative targeting):</strong> con las restricciones de Meta 2026, el mensaje reemplaza al targeting demográfico. '¿Cansado de rentar?' solo hace clic quien está listo — el ad se autofiltra y el algoritmo aprende de esos clics."
+  ],
+  [
+    "<strong>Confianza transferida (efecto halo):</strong> su audiencia ya le cree su lectura numerológica. Cuando ella lee la energía de una casa, la credibilidad de años de contenido se transfiere a la propiedad. Ningún anuncio puede comprar esa transferencia — solo se hereda.",
+    "<strong>Native advertising real:</strong> el contenido comercial que funciona es el que la audiencia consumiría aunque no vendiera nada. Una lectura numerológica de una casa ES contenido de numerología. El test: si se elimina la propiedad, ¿el video sigue siendo valioso para su audiencia? Sí → es orgánico.",
+    "<strong>Identidad tribal:</strong> su comunidad comparte un lenguaje y una cosmovisión. 'Las casas 8 atraen abundancia' refuerza la identidad del grupo. Comprar una casa 'con buena energía' se convierte en un acto de identidad, no solo una transacción.",
+    "<strong>Reciprocidad + autoridad:</strong> ella regala lecturas de valor (qué número te conviene, cómo leer tu dirección) sin pedir nada. La deuda psicológica se cobra sola en DMs. Y su autoridad no se declara — se demuestra en cada lectura."
+  ]
+];
+function verCamp(i,btn){
+  document.querySelectorAll('.ctab').forEach(function(b){b.classList.remove('on')});
+  btn.classList.add('on');
+  document.querySelectorAll('.camp').forEach(function(c,j){c.classList.toggle('on',j===i)});
+}
+var psySel=[null,null,null];
+function verPsy(c,i,pill){
+  var det=document.getElementById('pd-'+c);
+  var row=pill.parentElement;
+  if(psySel[c]===i){det.classList.remove('on');pill.classList.remove('sel');psySel[c]=null;return;}
+  row.querySelectorAll('.ppill').forEach(function(p){p.classList.remove('sel')});
+  pill.classList.add('sel');
+  det.innerHTML=PSY[c][i];
+  det.classList.add('on');
+  psySel[c]=i;
+}
+</script>
+</body>
+</html>
